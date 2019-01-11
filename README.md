@@ -12,6 +12,6 @@
 
 - sunpos_0_1000: test
 
-- trace2csv: runs simulation  and saves ray hit coordinates on flat absorber to csv
+- trace2csv: runs simulation for each sun position and saves ray hit coordinates on flat absorber to csv
 
 - plot_csv2gif: reads csv files, plots and creates gif
