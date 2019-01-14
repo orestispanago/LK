@@ -2,9 +2,9 @@
 
 ### File types
 
-- **.stinput** : spline file - Reflector shape
+- **.stinput** : SolTrace project - Contains all device elements and properties. Loading from the GUI is not 
 
-- **.csi** : SolTrace project - Contains all device elements and properties. Loading from the GUI is not necessary.
+- **.csi** :  spline file - Reflector shape necessary.
 
 - **.lk** : scripts
 
