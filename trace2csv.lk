@@ -13,7 +13,7 @@ trace_save = define(){
 		trace();
 		// Saves ray hits on flat absorber to .csv
 		arr[0] = colnames;
-		for (j=0;j<rayhits(0,3); j=j+1){
+		for (j=0;j<nintersect(); j=j+1){
 		arr[j+1] = raydata(j);
 		}
 		name = to_string(i)+'.csv';
