@@ -10,7 +10,9 @@
 
 ### Scripts
 
-- sunpos_0_1000: test
+- singletrace: runs trace for only one sun position
+ 
+- sunpos_0_1000: test for multiple sun position simulations
 
 - trace2csv: Runs simulation for each sun position and saves ray hit coordinates on flat absorber to csv
 
