@@ -1,6 +1,6 @@
 // Runs simulation and saves coordinates of rayhits on flat absorber to csv
 
-workdir("C:/Users/user/OneDrive - University of Patras/SCoSCo/WP2-Optical/ScriptTests");
+workdir("C:/Users/user/OneDrive - University of Patras/SCoSCo/WP2-Optical/Tracking");
 
 open_project("SCO_1_flat_abs.stinput");
 max_intersections=10000;

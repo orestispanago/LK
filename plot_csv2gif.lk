@@ -1,6 +1,6 @@
 // Reads csv files, plots and saves .gif
 
-work_dir = "C:/Users/user/OneDrive - University of Patras/SCoSCo/WP2-Optical/ScriptTests";
+work_dir = "C:/Users/user/OneDrive - University of Patras/SCoSCo/WP2-Optical/Tracking";
 cwd=(work_dir);
 
 read_plot = define(fname){
