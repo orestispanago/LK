@@ -9,14 +9,14 @@ read_plot = define(fname){
 	// plots
 	file = csvread(fname);
 	for ( i=1; i < #file; i=i+1 ){
-		//x[i-1] = file[i][0];
+		x[i-1] = file[i][0];
 		y[i-1] = file[i][1];
 		z[i-1] = file[i][2];
 		}
 	newplot(true);
 	plot(y,z,{type="scatter"});
 	plotopt( { 'title'='Sun position (X): '+split(fname,'.')[0],'scale'=1.5, 'font'='Times New Roman'} );
-	axis( 'y1', {'label'='Z axis (m)' } );
+	axis( 'y1', {'label'='Z axis (m)' ,max=0.28} );
 	axis( 'x1', {'label'='Y axis (m)'} );
 };
 
