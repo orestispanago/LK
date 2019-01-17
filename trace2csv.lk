@@ -3,18 +3,21 @@
 workdir("C:/Users/user/OneDrive - University of Patras/SCoSCo/WP2-Optical/ScriptTests");
 
 open_project("SCO_1_flat_abs.stinput");
-
+max_intersections=10000;
 colnames = ['x','y','z','cosx','cosy','cosz','element','stage','raynum'];
 trace_save = define(){
 	for ( i = 0; i < 1000; i=i+100 ) {
 		// Runs simulation
 		sunopt({x=i});//x = sun position
-		traceopt({rays=10000});
+		traceopt({rays=max_intersections});
 		trace();
 		// Saves ray hits on flat absorber to .csv
 		arr[0] = colnames;
-		for (j=0;j<nintersect(); j=j+1){
-		arr[j+1] = raydata(j);
+		for (j=0;j<nintersect(); j++){
+			if ( raydata(j)[6] == -4 ) // Selects element 4
+			{
+			arr[j+1] = raydata(j);
+			}
 		}
 		name = to_string(i)+'.csv';
 		csvwrite(name,arr);
@@ -23,3 +26,6 @@ trace_save = define(){
 
 
 trace_save();
+
+//outln(nintersect());
+
