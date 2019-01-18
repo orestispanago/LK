@@ -8,11 +8,16 @@ read_plot = define(fname){
 	// Gets coordinates of rayhits on flat absorber
 	// plots
 	file = csvread(fname);
+	j=0;
 	for ( i=1; i < #file; i=i+1 ){
-		x[i-1] = file[i][0];
-		y[i-1] = file[i][1];
-		z[i-1] = file[i][2];
+		if (file[i][6] == to_string(-4))
+		{
+		x[j] = file[i][0];
+		y[j] = file[i][1];
+		z[j] = file[i][2];
+		j=j+1;
 		}
+	}
 	newplot(true);
 	plot(y,z,{type="scatter"});
 	plotopt( { 'title'='Sun position (X): '+split(fname,'.')[0],'scale'=1.5, 'font'='Times New Roman'} );
