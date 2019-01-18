@@ -57,4 +57,6 @@ fig, ax = plt.subplots()
 animation = FuncAnimation(fig, update_scatter, len(Sim.cases),
                           interval=500)
 plt.show()
+
+
 # animation.save(outdir+'histogram_0_1000_step50.gif', dpi=80, writer='pillow')
