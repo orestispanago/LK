@@ -1,12 +1,13 @@
 // Runs simulation and saves coordinates of rayhits on flat absorber to csv
-
 workdir("C:/Users/user/OneDrive - University of Patras/SCoSCo/WP2-Optical/Tracking");
+outdir = workdir() + '/Data-analysis/raw/';
+mkdir(outdir, {make_full=true});
 
 open_project("SCO_1_flat_abs.stinput");
 max_intersections=10000;
 colnames = ['x','y','z','cosx','cosy','cosz','element','stage','raynum'];
 trace_save = define(){
-	for ( i = 0; i < 1000; i=i+100 ) {
+	for ( i = 0; i < 1000; i=i+50 ) {
 		// Runs simulation
 		sunopt({x=i});//x = sun position
 		traceopt({rays=max_intersections});
@@ -16,13 +17,12 @@ trace_save = define(){
 		for (j=0;j<nintersect(); j++){
 			arr[j+1] = raydata(j);
 		}
-		name = to_string(i)+'.csv';
+		name = outdir+to_string(i)+'.csv';
 		csvwrite(name,arr);
 	}
 };
 
 
 trace_save();
-
 //outln(nintersect());
 
