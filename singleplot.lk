@@ -1,0 +1,23 @@
+// Reads csv files, plots and saves .gif
+
+work_dir = "C:/Users/user/OneDrive - University of Patras/SCoSCo/WP2-Optical/Tracking";
+cwd=(work_dir);
+fname='900.csv';
+file = csvread(fname);
+j=0;
+for ( i=1; i < #file; i=i+1 ){
+	if (file[i][6] == to_string(-4))
+	{
+		x[j] = file[i][0];
+		y[j] = file[i][1];
+		z[j] = file[i][2];
+		j++;
+	}
+}
+newplot(true);
+plot(y,z,{type="scatter"});
+plotopt( { 'title'='Sun position (X): '+split(fname,'.')[0],'scale'=1.5, 'font'='Times New Roman'} );
+axis( 'y1', {'label'='Z axis (m)' ,max=0.28} );
+axis( 'x1', {'label'='Y axis (m)'} );
+
+

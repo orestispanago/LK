@@ -14,10 +14,7 @@ trace_save = define(){
 		// Saves ray hits on flat absorber to .csv
 		arr[0] = colnames;
 		for (j=0;j<nintersect(); j++){
-			if ( raydata(j)[6] == -4 ) // Selects element 4
-			{
 			arr[j+1] = raydata(j);
-			}
 		}
 		name = to_string(i)+'.csv';
 		csvwrite(name,arr);
