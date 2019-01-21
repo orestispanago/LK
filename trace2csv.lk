@@ -7,9 +7,11 @@ open_project("SCO_1_flat_abs.stinput");
 max_intersections=10000;
 colnames = ['x','y','z','cosx','cosy','cosz','element','stage','raynum'];
 trace_save = define(){
-	for ( i = 0; i < 1000; i=i+50 ) {
+	for (theta = -45; theta <= 45; theta = theta+5){
+		z=1000;
+		x = z*tand(theta); // Convert x to degree
 		// Runs simulation
-		sunopt({x=i});//x = sun position
+		sunopt({x=x});// x = sun position
 		traceopt({rays=max_intersections});
 		trace();
 		// Saves ray hits on flat absorber to .csv
@@ -17,7 +19,7 @@ trace_save = define(){
 		for (j=0;j<nintersect(); j++){
 			arr[j+1] = raydata(j);
 		}
-		name = outdir+to_string(i)+'.csv';
+		name = outdir+to_string(theta)+'.csv';
 		csvwrite(name,arr);
 	}
 };

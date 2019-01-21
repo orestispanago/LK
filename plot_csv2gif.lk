@@ -1,8 +1,9 @@
 // Reads csv files, plots and saves .gif
-
-work_dir = "C:/Users/user/OneDrive - University of Patras/SCoSCo/WP2-Optical/Tracking";
-cwd=(work_dir);
-
+// WARNING: Files are not sorted numerically! 
+// If negative values are present in filename, figures in gif won't be in correct order
+work_dir = "C:/Users/user/OneDrive - University of Patras/SCoSCo/WP2-Optical/Tracking/Data-analysis/raw";
+cwd(work_dir);
+outdir = "C:/Users/user/OneDrive - University of Patras/SCoSCo/WP2-Optical/Tracking/Data-analysis/output/";
 read_plot = define(fname){
 	// Reads csv file
 	// Gets coordinates of rayhits on flat absorber
@@ -20,7 +21,7 @@ read_plot = define(fname){
 	}
 	newplot(true);
 	plot(y,z,{type="scatter"});
-	plotopt( { 'title'='Sun position (X): '+split(fname,'.')[0],'scale'=1.5, 'font'='Times New Roman'} );
+	plotopt( { 'title'='Angle: '+split(fname,'.')[0] + ' deg','scale'=1.5, 'font'='Times New Roman'} );
 	axis( 'y1', {'label'='Z axis (m)' ,max=0.28} );
 	axis( 'x1', {'label'='Y axis (m)'} );
 };
@@ -32,5 +33,5 @@ for ( i=0; i < #csvfiles; i=i+1 ){
 	gifanim();
 }
 
-gifanim("test4.gif",400);
+gifanim(outdir+"test4.gif",400);
 
