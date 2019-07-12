@@ -1,0 +1,40 @@
+// Exports trace results to .db and flux analysis to .txt
+// Export filename: abspos_az.db
+
+// Absorber position
+ymin = -0.3
+ymax = 1.2
+ystep = 0.1
+
+azmin = 135
+azmax = 225
+azstep = 1
+
+// Tonatiuh cannot create directoriies. Make sure that expdir exists before run
+wdir = "C:/Users/orestis/Drafts/Linear/";
+expdir = wdir + "raw/";
+
+tonatiuh.Open( wdir +  "SCO1_CYL_CPC.tnh" );
+
+tonatiuh.SetRaysPerIteration(100);
+tonatiuh.SetExportPreviousNextPhotonID( true );
+tonatiuh.SetExportPhotonMapType( "SQL_Database" );
+tonatiuh.SetExportTypeParameterValue( "ExportDirectory",  expdir );
+
+for( var abspos = ymin; abspos <= ymax; abspos=abspos+ystep ){
+
+	var y = abspos.toString();
+	var translation = "0 "+y+" 0";
+	tonatiuh.SetValue("//SunNode/RootNode/Tracking_unit/", "translation", translation);
+	var fname = Number(abspos).toFixed(2).toString(); // converts abs position to 2 decimal and then to string
+	
+	for( var az = azmin; az <= azmax; az=az+azstep ){
+		tonatiuh.ChangeSunPosition( az, 0 );
+		var s = az.toString();
+		tonatiuh.SetExportTypeParameterValue( "DBFilename",   fname + "_" + s );
+		tonatiuh.SetExportAllPhotonMap();
+		tonatiuh.Run();
+		//Do not remove the following line, must run flux analysis to export surfaceID in .db files!!
+		tonatiuh.RunFluxAnalysis("//SunNode/RootNode/Tracking_unit/absorber_cylinder/TShapeKit2", "OUTSIDE", 10000,20,20, expdir,  fname + "_" + s,true);
+	}
+}
